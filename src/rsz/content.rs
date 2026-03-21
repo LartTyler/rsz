@@ -4,7 +4,7 @@ use crate::layout::{FieldKind, FieldLayout, LayoutMap, TypeId};
 use crate::types::mat4::Mat4;
 use crate::types::vec3::Vec3;
 use half::f16;
-use serde::{Serialize, Serializer};
+use serde::Serialize;
 use std::any::type_name;
 use std::collections::HashMap;
 use std::hash::Hash;

@@ -21,7 +21,7 @@ impl Rsz {
     ///
     /// The file referenced by `path` must be a regular, readable file. The entire file will be
     /// loaded into memory.
-    pub fn load(path: &Path, layout: &LayoutMap) -> Result<Self> {
+    pub fn load<P: AsRef<Path>>(path: P, layout: &LayoutMap) -> Result<Self> {
         Self::read_from(&mut File::open(path)?, layout)
     }
 
