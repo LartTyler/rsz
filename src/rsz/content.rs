@@ -4,6 +4,7 @@ use crate::layout::{FieldKind, FieldLayout, LayoutMap, TypeId};
 use crate::types::mat4::Mat4;
 use crate::types::vec3::Vec3;
 use half::f16;
+use serde::{Serialize, Serializer};
 use std::any::type_name;
 use std::collections::HashMap;
 use std::hash::Hash;
@@ -216,7 +217,7 @@ struct InternedString {
     pub offset: u64,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize)]
 pub struct Object {
     pub name: String,
     pub fields: Vec<Field>,
@@ -229,13 +230,13 @@ struct Instance {
     pub crc: u32,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize)]
 pub struct Field {
     pub name: String,
     pub value: Value,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize)]
 pub enum Value {
     Array(Values),
     Boolean(bool),
@@ -258,7 +259,7 @@ pub enum Value {
     Data(u8),
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize)]
 pub struct Values(Vec<Value>);
 
 impl Deref for Values {

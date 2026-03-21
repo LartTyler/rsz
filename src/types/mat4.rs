@@ -1,3 +1,5 @@
+use serde::ser::SerializeSeq;
+use serde::{Serialize, Serializer};
 use std::fmt::{Debug, Formatter};
 use zerocopy::{FromBytes, KnownLayout};
 
@@ -19,7 +21,22 @@ impl Clone for Mat4 {
     }
 }
 
-#[derive(Debug, FromBytes, KnownLayout, Clone)]
+impl Serialize for Mat4 {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut seq = serializer.serialize_seq(Some(self.0.len()))?;
+
+        for element in &self.0 {
+            seq.serialize_element(element)?;
+        }
+
+        seq.end()
+    }
+}
+
+#[derive(Debug, FromBytes, KnownLayout, Clone, Serialize)]
 #[repr(C, packed)]
 pub struct Mat4Element {
     x: f32,
