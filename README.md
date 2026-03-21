@@ -1,9 +1,9 @@
 [Latest Version]: https://img.shields.io/crates/v/rsz
 [crates.io]: https://crates.io/crates/rsz
-[msrv]: https://img.shields.io/crates/msrv/rsz.svg?label=rsz&color=lightgray
-[Rust 1.92]: https://blog.rust-lang.org/2025/12/11/Rust-1.92.0/
+[License]: https://img.shields.io/crates/l/rsz
+[gpl-3.0-or-later]: https://spdx.org/licenses/GPL-3.0-or-later.html
 
-# About &emsp; [![Latest Version]][crates.io]
+# About &emsp; [![Latest Version]][crates.io] [![License]][gpl-3.0-or-later]
 Yet another RSZ document parser for data files from the RE Engine.
 
 This project was created to drive the parsing step of [mhdb-wilds-data](https://github.com/LartTyler/mhdb-wilds-data).
