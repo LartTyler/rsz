@@ -1,13 +1,17 @@
 [package]
 name = "rsz"
+description = "Yet another RSZ parser for data files from the RE Engine"
 version = "0.1.0"
 edition = "2024"
+license = "GPL-3"
+repository = "https://github.com/LartTyler/rsz"
+keywords = ["rsz", "re-engine"]
 
 [dependencies]
 thiserror = "2.0"
 serde = { version = "1.0.228", features = ["derive", "rc"] }
 serde_json = "1.0"
-zerocopy =  { version = "0.8", features = ["derive"] }
+zerocopy = { version = "0.8", features = ["derive"] }
 uuid = { version = "1.22", features = ["serde"] }
 log = "0.4"
 half = { version = "2.7", features = ["zerocopy", "serde"] }
