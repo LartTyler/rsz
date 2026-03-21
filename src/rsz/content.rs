@@ -238,24 +238,63 @@ pub struct Field {
 
 #[derive(Debug, Clone, Serialize)]
 pub enum Value {
+    /// An array of [Value] objects.
     Array(Values),
+
+    /// A simple boolean value.
     Boolean(bool),
+
+    /// A 16-bit floating point number, backed by an [f16] from the
+    /// [`half`](https://docs.rs/half/latest/half/) library.
     F16(f16),
+
+    /// A 32-bit floating point number.
     F32(f32),
+
+    /// A 64-bit floating point number.
     F64(f64),
+
+    /// A UUID, backed by a [UUID] from the [uuid](https://docs.rs/uuid/latest/uuid/) library.
     Guid(Uuid),
+
+    /// An [Object] instance.
     Object(Rc<Object>),
+
+    /// An 8-bit signed integer.
     S8(i8),
+
+    /// A 16-bit signed integer.
     S16(i16),
+
+    /// A 32-bit signed integer.
     S32(i32),
+
+    /// A 64-bit signed integer.
     S64(i64),
+
+    /// A string value.
     String(String),
+
+    /// An 8-bit unsigned integer.
     U8(u8),
+
+    /// A 16-bit unsigned integer.
     U16(u16),
+
+    /// A 32-bit unsigned integer.
     U32(u32),
+
+    /// A 64-bit unsigned integer.
     U64(u64),
+
+    /// A 3-dimensional vector.
     Vec3(Vec3),
+
+    /// A 4x4 matrix value.
     Mat4(Mat4),
+
+    /// Not sure what this is, I just know it's backed by a `u8`, shows up in files I care about
+    /// parsing, but isn't actually needed right now.
     Data(u8),
 }
 

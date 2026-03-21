@@ -91,22 +91,54 @@ pub struct FieldLayout<'a> {
 pub enum FieldKind {
     #[serde(rename = "Bool")]
     Boolean,
+
+    /// A 16-bit float
     F16,
+
+    /// A 32-bit float
     F32,
+
+    /// A 64-bit float
     F64,
+
+    /// A UUID
     Guid,
+
+    /// An index that references one of the instances contained in the document.
     #[serde(rename = "Object")]
     InstanceRef,
+
+    /// An 8-bit signed integer
     S8,
+
+    /// A 16-bit signed integer
     S16,
+
+    /// A 32-bit signed integer
     S32,
+
+    /// A 64-bit signed integer
     S64,
+
+    /// A string
     String,
+
+    /// An 8-bit unsigned integer
     U8,
+
+    /// A 16-bit unsigned integer
     U16,
+
+    /// A 32-bit unsigned integer
     U32,
+
+    /// A 64-bit unsigned integer
     U64,
+
+    /// Currently unknown.
     Data,
+
+    /// An index referencing an interned string from the userdata section of the document.
     UserData,
 
     // --- All items below this line are not fully supported ---
