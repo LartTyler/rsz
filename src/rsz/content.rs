@@ -310,16 +310,38 @@ impl Deref for Values {
 }
 
 pub trait RszStream {
+    /// Creates a new stream that starts at the current position of this stream.
     fn as_relative(&self) -> Self;
+
+    /// Returns the current position of the stream.
     fn position(&self) -> usize;
+
+    /// Returns the absolute position of the stream, relevant to the start of the file.
+    ///
+    /// This is not directly used by the library, and is provided for debugging and logging
+    /// purposes.
     fn position_absolute(&self) -> usize;
+
+    /// Seeks to a specific position within the stream.
     fn seek(&mut self, position: usize) -> Result<()>;
+
+    /// Skips the next `len` bytes.
     fn skip(&mut self, len: usize) -> Result<()>;
+
+    /// Attempts to align the stream to a byte width.
+    ///
+    /// Parsing some values (usually strings) can leave us misaligned, since not every type has a
+    /// length equal to the byte alignment of every time. This method is called before attempting to
+    /// parse a value to ensure that we're on the correct alignment for that value's type.
     fn align(&mut self, alignment: usize) -> Result<()>;
 
+    /// Attempts to parse the field defined by `layout`, starting at the current position in the
+    /// stream. The stream's position should be advanced by the width of the field.
     fn next_field<T: ParseField>(&mut self, layout: &T, partial_content: &Content)
     -> Result<Field>;
 
+    /// Attempts to parse an arbitrary value from the stream. The stream's position should be
+    /// advanced by the width of the type.
     fn next_section<T>(&mut self) -> Result<T>
     where
         T: FromBytes + KnownLayout;
