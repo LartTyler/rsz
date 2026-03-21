@@ -103,7 +103,7 @@ impl Content {
         // endregion
 
         // region Objects
-        let mut objects: Vec<Rc<Object>> = Vec::with_capacity(instances.len());
+        content.instances.reserve(instances.len());
         data.seek(header.data_offset as usize)?;
 
         for (index, info) in instances.into_iter().enumerate() {
