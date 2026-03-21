@@ -3,7 +3,7 @@ name = "rsz"
 description = "Yet another RSZ parser for data files from the RE Engine"
 version = "0.1.0"
 edition = "2024"
-license = "GPL-3"
+license = "GPL-3.0-or-later"
 repository = "https://github.com/LartTyler/rsz"
 keywords = ["rsz", "re-engine"]
 
