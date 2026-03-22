@@ -10,6 +10,7 @@ use std::collections::HashMap;
 use std::hash::Hash;
 use std::ops::Deref;
 use std::rc::Rc;
+use strum_macros::EnumTryAs;
 use uuid::Uuid;
 use zerocopy::{FromBytes, KnownLayout};
 
@@ -217,7 +218,7 @@ struct InternedString {
     pub offset: u64,
 }
 
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, PartialEq)]
 pub struct Object {
     pub name: String,
     pub fields: Vec<Field>,
@@ -230,13 +231,13 @@ struct Instance {
     pub crc: u32,
 }
 
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, PartialEq)]
 pub struct Field {
     pub name: String,
     pub value: Value,
 }
 
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, EnumTryAs, PartialEq)]
 pub enum Value {
     /// An array of [Value] objects.
     Array(Values),
@@ -298,8 +299,8 @@ pub enum Value {
     Data(u8),
 }
 
-#[derive(Debug, Clone, Serialize)]
-pub struct Values(Vec<Value>);
+#[derive(Debug, Clone, Serialize, PartialEq)]
+pub struct Values(pub Vec<Value>);
 
 impl Deref for Values {
     type Target = Vec<Value>;
@@ -404,7 +405,7 @@ impl RszStream for SliceStream<'_> {
     fn seek(&mut self, position: usize) -> Result<()> {
         self.position = position;
         log::trace!(
-            "Seeking to {position:#X} (abs = {:#X}",
+            "Seeking to {position:#X} (abs = {:#X})",
             self.position_absolute()
         );
 

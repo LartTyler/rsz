@@ -4,7 +4,7 @@ use std::collections::HashMap;
 
 type Result<T> = std::result::Result<T, Error>;
 
-pub type TypeId = usize;
+pub type TypeId = u32;
 type InnerMap<'a> = HashMap<TypeId, Layout<'a>>;
 
 /// Layout maps are usually loaded from RSZ JSON files, and contain a mapping of type IDs to their

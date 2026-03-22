@@ -1,0 +1,371 @@
+{
+  "0": {
+    "crc": "0",
+    "fields": [],
+    "name": ""
+  },
+  "16cc7dce": {
+    "crc": "238fb2c9",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Value",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.EquipDef.SlotLevel_Serializable"
+  },
+  "182d11d1": {
+    "crc": "6dc42ddc",
+    "fields": [],
+    "name": "System.UInt32"
+  },
+  "25425a57": {
+    "crc": "ced3cf42",
+    "fields": [],
+    "name": "System.Int32"
+  },
+  "314f7c06": {
+    "crc": "9f2315f3",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Value",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.ItemDef.RARE_Serializable"
+  },
+  "31874db1": {
+    "crc": "cfe7d239",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Index",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      },
+      {
+        "align": 4,
+        "array": false,
+        "name": "_AccessoryId",
+        "native": false,
+        "original_type": "app.EquipDef.ACCESSORY_ID_Serializable",
+        "size": 4,
+        "type": "Object"
+      },
+      {
+        "align": 8,
+        "array": false,
+        "name": "_Name",
+        "native": false,
+        "original_type": "System.Guid",
+        "size": 16,
+        "type": "Guid"
+      },
+      {
+        "align": 8,
+        "array": false,
+        "name": "_Explain",
+        "native": false,
+        "original_type": "System.Guid",
+        "size": 16,
+        "type": "Guid"
+      },
+      {
+        "align": 4,
+        "array": false,
+        "name": "_AccessoryType",
+        "native": false,
+        "original_type": "app.EquipDef.ACCESSORY_TYPE_Serializable",
+        "size": 4,
+        "type": "Object"
+      },
+      {
+        "align": 4,
+        "array": false,
+        "name": "_SortId",
+        "native": false,
+        "original_type": "System.UInt32",
+        "size": 4,
+        "type": "U32"
+      },
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Rare",
+        "native": false,
+        "original_type": "app.ItemDef.RARE_Serializable",
+        "size": 4,
+        "type": "Object"
+      },
+      {
+        "align": 4,
+        "array": false,
+        "name": "_IconColor",
+        "native": false,
+        "original_type": "app.ColorPreset.TYPE_Fixed",
+        "size": 4,
+        "type": "S32"
+      },
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Price",
+        "native": false,
+        "original_type": "System.UInt32",
+        "size": 4,
+        "type": "U32"
+      },
+      {
+        "align": 4,
+        "array": false,
+        "name": "_SlotLevelAcc",
+        "native": false,
+        "original_type": "app.EquipDef.SlotLevel_Serializable",
+        "size": 4,
+        "type": "Object"
+      },
+      {
+        "align": 4,
+        "array": true,
+        "name": "_Skill",
+        "native": false,
+        "original_type": "app.HunterDef.Skill_Serializable",
+        "size": 4,
+        "type": "Object"
+      },
+      {
+        "align": 4,
+        "array": true,
+        "name": "_SkillLevel",
+        "native": false,
+        "original_type": "System.UInt32",
+        "size": 4,
+        "type": "U32"
+      }
+    ],
+    "name": "app.user_data.AccessoryData.cData"
+  },
+  "3504290c": {
+    "crc": "84f2857f",
+    "fields": [],
+    "name": "ace.user_data.ExcelUserData.cData"
+  },
+  "539e9094": {
+    "crc": "46926d11",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Value",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.HunterDef.Skill_Serializable"
+  },
+  "5f6621d1": {
+    "crc": "cd8a8a9a",
+    "fields": [],
+    "name": "app.EquipDef"
+  },
+  "628f1f67": {
+    "crc": "5eafdbd5",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Value",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.EquipDef.ACCESSORY_TYPE_Serializable"
+  },
+  "655a5f0d": {
+    "crc": "1102b100",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "value__",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.ColorPreset.TYPE"
+  },
+  "7fc2bc45": {
+    "crc": "5c7297de",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "value__",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.ColorPreset.TYPE_Fixed"
+  },
+  "83e9c2bf": {
+    "crc": "9b7be2d9",
+    "fields": [],
+    "name": "app.HunterDef"
+  },
+  "884acb32": {
+    "crc": "4cc45961",
+    "fields": [
+      {
+        "align": 4,
+        "array": true,
+        "name": "_Values",
+        "native": false,
+        "original_type": "ace.user_data.ExcelUserData.cData",
+        "size": 4,
+        "type": "Object"
+      }
+    ],
+    "name": "app.user_data.AccessoryData"
+  },
+  "a25dad61": {
+    "crc": "1aa79033",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "_Value",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.EquipDef.ACCESSORY_ID_Serializable"
+  },
+  "aa37fe79": {
+    "crc": "b7951dd8",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "value__",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.EquipDef.ACCESSORY_ID"
+  },
+  "b11daa48": {
+    "crc": "3e20eba5",
+    "fields": [],
+    "name": "System.Guid"
+  },
+  "b194932e": {
+    "crc": "f6193738",
+    "fields": [],
+    "name": "app.ItemDef"
+  },
+  "c6973479": {
+    "crc": "77a47241",
+    "fields": [
+      {
+        "align": 4,
+        "array": true,
+        "name": "_Values",
+        "native": false,
+        "original_type": "ace.user_data.ExcelUserData.cData",
+        "size": 4,
+        "type": "Object"
+      }
+    ],
+    "name": "ace.user_data.ExcelUserData"
+  },
+  "cbcbe063": {
+    "crc": "3565d9f1",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "value__",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.EquipDef.SlotLevel"
+  },
+  "e0bacb1b": {
+    "crc": "bb0e33bd",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "value__",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.EquipDef.ACCESSORY_TYPE"
+  },
+  "e3d685de": {
+    "crc": "1c8c0c82",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "value__",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.ItemDef.RARE"
+  },
+  "fdb61229": {
+    "crc": "c957f19d",
+    "fields": [
+      {
+        "align": 4,
+        "array": false,
+        "name": "value__",
+        "native": false,
+        "original_type": "System.Int32",
+        "size": 4,
+        "type": "S32"
+      }
+    ],
+    "name": "app.HunterDef.Skill"
+  },
+  "ff4de922": {
+    "crc": "98266727",
+    "fields": [],
+    "name": "app.ColorPreset"
+  }
+}

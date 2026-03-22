@@ -36,7 +36,13 @@ impl Serialize for Mat4 {
     }
 }
 
-#[derive(Debug, FromBytes, KnownLayout, Clone, Serialize)]
+impl PartialEq for Mat4 {
+    fn eq(&self, other: &Self) -> bool {
+        self.0.eq(&other.0)
+    }
+}
+
+#[derive(Debug, FromBytes, KnownLayout, Clone, Serialize, PartialEq)]
 #[repr(C, packed)]
 pub struct Mat4Element {
     x: f32,
