@@ -13,7 +13,7 @@ specific types, feel free to submit a pull request or open an issue requesting t
 ## Usage
 
 ```rust
-use rsz::{Rsz, User, Value, Layout};
+use rsz::{Rsz, User, Value, LayoutMap};
 use std::fs;
 use std::fs::File;
 
@@ -21,7 +21,7 @@ fn main() -> Result<(), anyhow::Error> {
     // First, load an RSZ layout file, which contains the layouts of the data types
     // used by the engine.
     let layouts = fs::read_to_string("/path/to/rszexample.json")?;
-    let layouts = Layout::from_json(&layouts);
+    let layouts = LayoutMap::from_json(&layouts);
 
     // Next, parse the actual document. You can use `Rsz` as your entrypoint if you need
     // to handle multiple types of RSZ document.
