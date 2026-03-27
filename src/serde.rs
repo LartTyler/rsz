@@ -50,9 +50,7 @@ impl Serialize for Object {
     where
         S: Serializer,
     {
-        if let Some(inner) = as_transparent_collection(self) {
-            inner.serialize(serializer)
-        } else if let Some(inner) = as_transparent_object(self) {
+        if let Some(inner) = as_transparent_object(self) {
             inner.serialize(serializer)
         } else {
             let mut map = serializer.serialize_map(Some(self.fields.len()))?;
@@ -67,14 +65,6 @@ impl Serialize for Object {
 
             map.end()
         }
-    }
-}
-
-fn as_transparent_collection(item: &Object) -> Option<&Values> {
-    if let Value::Array(inner) = &item.fields.first_only()?.value {
-        Some(inner)
-    } else {
-        None
     }
 }
 
@@ -118,5 +108,82 @@ impl Serialize for Values {
         }
 
         seq.end()
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::Field;
+
+    type Result = std::result::Result<(), anyhow::Error>;
+
+    #[test]
+    fn transparent_object_to_json() -> Result {
+        let actual = Value::Object(Rc::new(Object {
+            name: "Example".to_string(),
+            fields: vec![Field {
+                name: "Field".to_string(),
+                value: Value::Array(Values(vec![Value::Boolean(true)])),
+            }],
+        }));
+
+        assert_eq!(serde_json::to_string(&actual)?, "[true]");
+
+        let actual = Value::Object(Rc::new(Object {
+            name: "Top Level".to_string(),
+            fields: vec![Field {
+                name: "Top Field".to_string(),
+                value: Value::Object(Rc::new(Object {
+                    name: "Inner".to_string(),
+                    fields: vec![Field {
+                        name: "Inner Field".to_string(),
+                        value: Value::S32(-100),
+                    }],
+                })),
+            }],
+        }));
+
+        assert_eq!(serde_json::to_string(&actual)?, "-100");
+
+        let actual = Value::Object(Rc::new(Object {
+            name: "Example".to_string(),
+            fields: vec![
+                Field {
+                    name: "Field 1".to_string(),
+                    value: Value::Array(Values(vec![Value::Boolean(true)])),
+                },
+                Field {
+                    name: "Field 2".to_string(),
+                    value: Value::Array(Values(vec![Value::Boolean(false)])),
+                },
+            ],
+        }));
+
+        assert_eq!(
+            serde_json::to_string(&actual)?,
+            r#"{"Field 1":[true],"Field 2":[false]}"#
+        );
+
+        let actual = Value::Object(Rc::new(Object {
+            name: "Example 2".to_string(),
+            fields: vec![
+                Field {
+                    name: "Field 1".to_string(),
+                    value: Value::Boolean(true),
+                },
+                Field {
+                    name: "Field 2".to_string(),
+                    value: Value::Boolean(false),
+                },
+            ],
+        }));
+
+        assert_eq!(
+            serde_json::to_string(&actual)?,
+            r#"{"Field 1":true,"Field 2":false}"#
+        );
+
+        Ok(())
     }
 }

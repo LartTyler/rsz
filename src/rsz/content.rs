@@ -246,7 +246,7 @@ struct Instance {
     pub crc: u32,
 }
 
-#[derive(Debug, Clone, Serialize, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Field {
     pub name: String,
     pub value: Value,
