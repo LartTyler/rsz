@@ -8,7 +8,7 @@ use serde::Serialize;
 use std::any::type_name;
 use std::collections::HashMap;
 use std::hash::Hash;
-use std::ops::Deref;
+use std::ops::{Deref, DerefMut};
 use std::rc::Rc;
 use strum_macros::EnumTryAs;
 use uuid::Uuid;
@@ -200,8 +200,6 @@ pub struct Header {
     pub intern_offset: u64,
 }
 
-type Objects = Vec<Rc<Object>>;
-
 #[derive(Debug, FromBytes, KnownLayout)]
 #[repr(C, packed)]
 pub struct ObjectReference {
@@ -218,7 +216,24 @@ struct InternedString {
     pub offset: u64,
 }
 
-#[derive(Debug, Clone, Serialize, PartialEq)]
+#[derive(Debug, Default)]
+pub struct Objects(Vec<Rc<Object>>);
+
+impl Deref for Objects {
+    type Target = Vec<Rc<Object>>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl DerefMut for Objects {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+
+#[derive(Debug, Clone, PartialEq)]
 pub struct Object {
     pub name: String,
     pub fields: Vec<Field>,
@@ -237,7 +252,19 @@ pub struct Field {
     pub value: Value,
 }
 
+#[derive(Debug, Clone, PartialEq)]
+pub struct Values(pub Vec<Value>);
+
+impl Deref for Values {
+    type Target = Vec<Value>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
 #[derive(Debug, Clone, Serialize, EnumTryAs, PartialEq)]
+#[serde(untagged)]
 pub enum Value {
     /// An array of [Value] objects.
     Array(Values),
@@ -297,17 +324,6 @@ pub enum Value {
     /// Not sure what this is, I just know it's backed by a `u8`, shows up in files I care about
     /// parsing, but isn't actually needed right now.
     Data(u8),
-}
-
-#[derive(Debug, Clone, Serialize, PartialEq)]
-pub struct Values(pub Vec<Value>);
-
-impl Deref for Values {
-    type Target = Vec<Value>;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
 }
 
 pub trait RszStream {
