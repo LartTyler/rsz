@@ -57,6 +57,14 @@ impl Content {
         content.interned_strings.reserve_signed(header.intern_count);
         data.seek(header.intern_offset as usize)?;
 
+        {
+            let count = header.intern_count;
+            log::trace!("Expecting {} interned string(s)", count);
+        }
+
+        let mut interned_strings = Vec::with_capacity(header.intern_offset as usize);
+        data.seek(header.intern_offset as usize)?;
+
         for _ in 0..header.intern_count {
             let info: InternedString = data.next_section()?;
 
@@ -71,18 +79,29 @@ impl Content {
                 );
             }
 
-            data.seek(info.offset as usize)?;
+            interned_strings.push(info);
+        }
+
+        content.interned_strings.reserve_signed(header.intern_count);
+
+        for entry in interned_strings {
+            data.seek(entry.offset as usize)?;
 
             let value = read_string(data, None)?;
             log::debug!("value = {value}");
 
-            content.interned_strings.insert(info.index, value);
+            content.interned_strings.insert(entry.index, value);
         }
 
-        log::debug!(
-            "Found {} interned string(s)",
-            content.interned_strings.len()
-        );
+        {
+            let expected_intern = header.intern_count;
+
+            log::debug!(
+                "Found {} interned string(s), expected {}",
+                content.interned_strings.len(),
+                expected_intern
+            );
+        }
         // endregion
 
         // region Instances
