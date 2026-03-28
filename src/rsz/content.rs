@@ -324,6 +324,11 @@ pub enum Value {
     /// Not sure what this is, I just know it's backed by a `u8`, shows up in files I care about
     /// parsing, but isn't actually needed right now.
     Data(u8),
+
+    /// No value. As far as I can tell, this is really only encountered for interned strings that
+    /// aren't set. I _think_ that may be limited to the "template" files that tend to be found
+    /// in every group of data files (e.g. Mission01010 for quests).
+    Null,
 }
 
 pub trait RszStream {
@@ -593,6 +598,13 @@ impl ParseField for FieldLayout<'_> {
             Data => data.next_section().map(Value::Data),
             UserData => {
                 let index: u32 = data.next_section()?;
+
+                // Interned strings pointing to index zero seem to consistently mean there is no
+                // string defined for the field. We'll consider this "null".
+                if index == 0 {
+                    return Ok(Value::Null);
+                }
+
                 let Some(value) = partial_content.interned_strings.get(&index) else {
                     panic!("Could not find interned string where index = {index}");
                 };
