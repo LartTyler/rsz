@@ -148,6 +148,8 @@ impl Content {
             // interned strings. These are stored in the data section of the document, and are
             // assigned an index which is the "slot" they occupy in the instance list.
             let object = if let Some(intern_ref) = content.interned_strings.get(&(index as u32)) {
+                log::debug!("intern ref = {index}, value = {intern_ref}");
+
                 Rc::new(Object {
                     name: layout.name.to_owned(),
                     fields: vec![Field {
