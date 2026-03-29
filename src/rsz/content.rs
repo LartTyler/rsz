@@ -473,7 +473,7 @@ impl RszStream for SliceStream<'_> {
             self.position_absolute()
         );
 
-        let delta = self.position % alignment;
+        let delta = self.position_absolute() % alignment;
 
         if delta != 0 {
             self.position += alignment - delta;
